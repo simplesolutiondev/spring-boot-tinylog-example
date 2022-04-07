@@ -1,0 +1,32 @@
+plugins {
+    id 'org.springframework.boot' version '2.6.6'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+group = 'dev.simplesolution'
+version = '1.0.0'
+sourceCompatibility = '1.8'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation('org.springframework.boot:spring-boot-starter-web') {
+        exclude group: 'org.springframework.boot', module:'spring-boot-starter-logging'
+    }
+    testImplementation ('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.springframework.boot', module:'spring-boot-starter-logging'
+    }
+
+    implementation group: 'org.tinylog', name: 'tinylog-api', version: '2.4.1'
+    implementation group: 'org.tinylog', name: 'tinylog-impl', version: '2.4.1'
+    implementation group: 'org.tinylog', name: 'slf4j-tinylog', version: '2.4.1'
+    implementation group: 'org.tinylog', name: 'jcl-tinylog', version: '2.4.1'
+    implementation group: 'org.tinylog', name: 'log4j1.2-api', version: '2.4.1'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
